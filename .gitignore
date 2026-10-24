@@ -4,6 +4,7 @@
 ### Android ###
 # Gradle files
 .gradle/
+.kotlin/
 build/
 private_key.pepk
 
@@ -333,3 +334,7 @@ keystore
 # All .DS_Store files
 .DS_Store
 key.properties
+
+# Local drafts/device verification helpers and generated publishing credentials
+/work/
+/fastlane/play-store-key.json

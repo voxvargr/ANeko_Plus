@@ -12,6 +12,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.core.content.edit
+import androidx.core.content.ContextCompat
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
@@ -133,7 +134,7 @@ class ANekoActivity : AppCompatActivity() {
 
     private fun startAnimationService() {
         prefs.edit { putBoolean(AnimationService.PREF_KEY_VISIBLE, true) }
-        startService(
+        ContextCompat.startForegroundService(this,
             Intent(this, AnimationService::class.java)
                 .setAction(AnimationService.ACTION_START)
         )

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ANeko</string>
+    <string name="start_pet">Start pets</string>
+    <string name="pet_running">Pets running</string>
+    <string name="stop_pet">Stop pets</string>
+    <string name="service_report">Service report: %1$s</string>
+</resources>

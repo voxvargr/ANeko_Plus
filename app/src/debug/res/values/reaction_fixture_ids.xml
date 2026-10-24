@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="reaction_fixture_header" type="id" />
+    <item name="reaction_fixture_editor" type="id" />
+    <item name="reaction_fixture_password" type="id" />
+    <item name="reaction_fixture_scroll" type="id" />
+</resources>

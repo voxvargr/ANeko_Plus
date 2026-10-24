@@ -27,3 +27,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "ANeko"
 include(":app")
+include(":wear")
+include(":companion")

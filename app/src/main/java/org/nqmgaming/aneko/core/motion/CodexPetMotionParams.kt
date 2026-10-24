@@ -62,6 +62,10 @@ class CodexPetMotionParams(
         addRowMotion("dragVertical", CodexPetContract.running, repeatCount = -1)
 
         if (source.version == 2) {
+            listOf("Up" to 0, "UpRight" to 45, "Right" to 90, "DownRight" to 135,
+                "Down" to 180, "DownLeft" to 225, "Left" to 270, "UpLeft" to 315).forEach { (name, degrees) ->
+                addLookMotion("watch$name", degrees, repeatCount = -1)
+            }
             addLookMotion("moveUp", 0, repeatCount = -1)
             addLookMotion("moveUpRight", 45, repeatCount = -1)
             addLookMotion("moveDownRight", 135, repeatCount = -1)

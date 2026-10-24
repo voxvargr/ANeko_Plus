@@ -1,0 +1,35 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!-- New feature copy deliberately uses the English fallback until community translations land. -->
+    <string name="media_reactions_title">Media reactions</string>
+    <string name="media_reactions_enabled_title">Avoid and watch videos</string>
+    <string name="media_reactions_enabled_summary">Pets move out of video areas and watch from the edge.</string>
+    <string name="media_reactions_disclosure_title">Enable media reactions?</string>
+    <string name="media_reactions_disclosure_message">Pets can avoid a video area you mark manually. For optional automatic detection in YouTube and Facebook, ANeko uses Android accessibility access to inspect the visible app layout and locate video-player bounds. Detection runs on your device. ANeko does not capture screenshots or upload screen content.\n\nEnabling this feature does not grant accessibility access. You choose whether to enable that separately in Android Settings. Automatic detection is experimental and depends on the player layout.</string>
+    <string name="media_reactions_disclosure_enable">Enable reactions</string>
+    <string name="media_fullscreen_fade_title">Fade pet over fullscreen video</string>
+    <string name="media_fullscreen_fade_summary">Temporarily fade pets when fullscreen video is detected on the phone. Normal appearance returns afterward.</string>
+    <string name="media_fullscreen_fade_amount_title">Fullscreen video transparency</string>
+    <string name="media_fullscreen_fade_80" formatted="false">80% transparent (20% opacity)</string>
+    <string name="media_fullscreen_fade_90" formatted="false">90% transparent (10% opacity)</string>
+    <string name="media_fullscreen_fade_disclosure_title">Enable fullscreen video fading?</string>
+    <string name="media_fullscreen_fade_disclosure">ANeko uses optional Android accessibility access to inspect the foreground app layout and exposed video-player bounds. Fullscreen detection is best effort across apps; some players hide their bounds or expose ambiguous rendered areas. You can mark a video area manually instead.\n\nDetection runs locally. ANeko does not capture screenshots, record or log screen content, or send it over the network. Enabling fading does not grant accessibility access; you choose that separately in Android Settings.\n\nThis effect is temporary and phone-only. For automatically detected video, normal opacity returns when the fullscreen area disappears, shrinks, or its app leaves the foreground. A manually marked area stays fixed and can keep fading active until you choose Clear marked area. Watch appearance and your normal opacity setting stay unchanged.</string>
+    <string name="media_fullscreen_fade_enable">Enable fading</string>
+    <string name="media_reactions_accessibility_title">Automatic detection · Android Settings</string>
+    <string name="media_reactions_accessibility_connected">Accessibility service connected. Finds exposed player bounds for enabled media reactions; fullscreen detection is best effort across apps.</string>
+    <string name="media_reactions_accessibility_disconnected">Optional accessibility access is disconnected. Open Android Settings to enable ANeko screen reactions, or mark an area manually.</string>
+    <string name="reactions_restricted_settings_hint">For a sideloaded APK, Android 13+ may require App info → ⋮ → Allow restricted settings. Then return to Accessibility and enable ANeko screen reactions. If that menu item is absent, use the normal Accessibility screen.</string>
+    <string name="reactions_open_app_info">Open ANeko App info</string>
+    <string name="reactions_app_info_unavailable">Open Android Settings → Apps → ANeko → App info, then return to Accessibility.</string>
+    <string name="media_reactions_manual_title">Mark a video area</string>
+    <string name="media_reactions_manual_summary">With pets running, open the video app, tap the floating mark button, then drag around the video. The marked area stays fixed.</string>
+    <string name="media_reactions_clear_title">Clear marked area</string>
+    <string name="media_reactions_clear_summary">Clear the fixed area after scrolling, moving the video, or changing apps.</string>
+    <string name="media_reactions_enable_first">Enable a media reaction first.</string>
+    <string name="media_reactions_start_pets_first">Start and show your pets first.</string>
+    <string name="media_accessibility_service_label">ANeko screen reactions</string>
+    <string name="media_accessibility_description">Optional screen reactions, each enabled separately in ANeko: find exposed YouTube/Facebook player bounds, detect fullscreen video-player geometry across apps for temporary phone-only fading, follow a typing cursor in supported editors, or react to scrolling only inside the moving pane. Password and Android-marked sensitive text fields are excluded. Detection stays on the device; screen content is not recorded, logged, or uploaded. No screenshots are captured. Apps may hide the bounds these features need. Manual video marking works without this access.</string>
+    <string name="media_mark_area">Mark video area</string>
+    <string name="media_mark_instruction">Drag around the video</string>
+    <string name="media_mark_cancel">Cancel marking</string>
+    <string name="media_mark_clear">Clear marked area</string>
+</resources>

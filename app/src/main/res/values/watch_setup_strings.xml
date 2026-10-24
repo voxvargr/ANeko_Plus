@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="watch_setup_title">Watch setup from phone</string>
+    <string name="watch_setup_open">Install and enable the watch companion</string>
+    <string name="watch_setup_summary">Save or share the watch APK, copy its overlay command, and open Bugjaeger.</string>
+    <string name="watch_setup_pair">1. On the watch, enable Developer options, ADB debugging, and Wireless debugging. Connect both devices to the same Wi-Fi. In Bugjaeger on this phone, pair with the watch using its pairing code, then connect using its connection port. Pairing and connection ports can differ. Select the watch as the target.</string>
+    <string name="watch_setup_apk_included">A matching watch APK is included in this phone build. Save it for an ADB client, or share it with a compatible app.</string>
+    <string name="watch_setup_checking">Checking for the bundled watch APK…</string>
+    <string name="watch_setup_apk_missing">This phone build does not include a watch APK. Use the matching watch APK supplied with your release. Command copying and opening Bugjaeger still work.</string>
+    <string name="watch_setup_save_apk">Save watch APK</string>
+    <string name="watch_setup_share_apk">Share watch APK</string>
+    <string name="watch_setup_install">2. In Bugjaeger, select the watch, open Packages, tap +, and choose the saved watch APK. With another ADB client, use its APK installation flow.</string>
+    <string name="watch_setup_shell">3. Open the selected watch’s interactive shell and paste this command. Bugjaeger is already inside the shell, so paste it exactly as shown.</string>
+    <string name="watch_setup_shell_label">Watch overlay shell command</string>
+    <string name="watch_setup_copy_command">Copy watch shell command</string>
+    <string name="watch_setup_open_bugjaeger">Open Bugjaeger</string>
+    <string name="watch_setup_finish">4. Open ANeko on the watch and start its overlay. Return to the phone and choose Automatic to move the companion between devices.</string>
+    <string name="watch_setup_finish_foss">4. Open ANeko on the watch and start its overlay. FOSS companions run independently. Moving one companion between devices requires the connected build on both devices.</string>
+    <string name="watch_setup_shizuku">Shizuku running on this phone provides privileges on this phone. Setting up the watch still requires an ADB connection to the watch. APK sharing also works with other compatible clients; Bugjaeger is optional.</string>
+    <string name="watch_setup_close">Close</string>
+    <string name="watch_setup_saved">Watch APK saved. Select it from your watch ADB client.</string>
+    <string name="watch_setup_export_failed">Could not export a matching signed watch APK. Check that this phone build includes one and try again.</string>
+    <string name="watch_setup_share_failed">Could not share the watch APK. Try saving it and selecting it in your ADB client.</string>
+    <string name="watch_setup_copied">Watch shell command copied</string>
+    <string name="watch_setup_client_missing">Bugjaeger is not installed or could not be opened. Use any compatible watch ADB client with the saved APK and copied command.</string>
+</resources>

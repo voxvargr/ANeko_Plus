@@ -1,0 +1,19 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <!-- New feature copy deliberately uses the English fallback until community translations land. -->
+    <string name="wear_companion_title">Phone and watch</string>
+    <string name="wear_companion_foss">Watch sync is available in the connected build. This FOSS build has no Google Play services dependency.</string>
+    <string name="wear_companion_summary">Start the companion on both devices once. Selected pets and appearance settings sync to your paired watch. Automatic handoff keeps one copy, favoring an unlocked phone; otherwise an awake watch. The pet leaves its current screen before appearing on the other device. Both devices deliberately allows separate copies.</string>
+    <string name="wear_mode_phone">Phone only</string>
+    <string name="wear_mode_watch">Watch only</string>
+    <string name="wear_mode_both">Both devices (separate copies)</string>
+    <string name="wear_mode_auto">Automatic handoff</string>
+    <string name="wear_location_phone">Current location: phone</string>
+    <string name="wear_location_watch">Current location: watch</string>
+    <string name="wear_location_both">Current location: phone and watch</string>
+    <string name="wear_location_pending">Current location: waiting for handoff confirmation</string>
+    <string name="attention_title">Attention antics</string>
+    <string name="attention_enabled">Occasional taps and hops</string>
+    <string name="attention_summary">An occasional little attention gesture while awake. Pauses in Quiet Mode and during dragging or handoff. Syncs to the watch.</string>
+    <string name="attention_haptics">Vibrate on contact</string>
+    <string name="attention_haptics_summary">A light vibration when a tap or hop lands. Respects the device haptic feedback setting.</string>
+</resources>

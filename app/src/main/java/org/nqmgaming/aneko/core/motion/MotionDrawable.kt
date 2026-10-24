@@ -51,6 +51,22 @@ class MotionDrawable() : Drawable(), Animatable {
         constantState.repeatCount = count
     }
 
+    /** A bounded, single-cycle snapshot for the small companion renderer on Wear OS. */
+    fun exportFrames(limit: Int = 64): List<Pair<Drawable, Int>> {
+        val result = mutableListOf<Pair<Drawable, Int>>()
+        fun append(animation: MotionDrawable, depth: Int) {
+            if (depth > 8) return
+            for (index in 0 until animation.constantState.frameCount) {
+                if (result.size >= limit) return
+                val frame = animation.constantState.getFrame(index) ?: continue
+                if (frame is MotionDrawable) append(frame, depth + 1)
+                else result += frame to animation.constantState.getFrameDuration(index).coerceIn(40, 10_000)
+            }
+        }
+        append(this, 0)
+        return result
+    }
+
     fun addFrame(drawable: Drawable, duration: Int) {
         var d = drawable
         if (d is AnimationDrawable) {

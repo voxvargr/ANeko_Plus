@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="input_reactions_title">Typing and scrolling</string>
+    <string name="cursor_chase_title">Chase the typing cursor</string>
+    <string name="cursor_chase_summary">Follow the caret while typing or moving it, including space-bar cursor gestures. Requires the editor to expose cursor geometry. Pauses in Quiet Mode.</string>
+    <string name="cursor_chase_disclosure_title">Enable cursor chasing?</string>
+    <string name="cursor_chase_disclosure">With Android accessibility access, ANeko can follow the caret in a focused text editor that exposes character positions. Password fields and fields Android marks sensitive are excluded. Some editors do not expose usable positions. Typed content is not saved, logged, or sent to the watch or a server. The pet stays beside the caret without typing or tapping.\n\nThis option is off by default. Accessibility access is enabled separately in Android Settings.</string>
+    <string name="scroll_reactions_title">React to fast scrolling</string>
+    <string name="scroll_reactions_summary">Fast scrolling can fling pets sitting over the moving pane, followed by a short slide. Pets outside that pane stay put. Pauses in Quiet Mode.</string>
+    <string name="scroll_reactions_disclosure_title">Enable scrolling reactions?</string>
+    <string name="scroll_reactions_disclosure">With Android accessibility access, ANeko uses scroll movement and the bounds of the scrolling pane to nudge only pets inside that pane. Fixed headers and other screen areas are unaffected when the app exposes separate bounds. Apps that hide scrolling bounds or movement may not react. No screen captures or scroll history are saved or uploaded.\n\nThis option is off by default. Accessibility access is enabled separately in Android Settings.</string>
+    <string name="input_reactions_accessibility_title">Screen reactions · Android Settings</string>
+    <string name="input_reactions_connected">Accessibility service connected. Reactions use the cursor and scroll bounds that each app exposes.</string>
+    <string name="input_reactions_disconnected">Enable ANeko screen reactions in Android Accessibility settings to use these optional features.</string>
+    <string name="input_reactions_enable_first">Enable a typing or scrolling reaction first.</string>
+    <string name="input_reactions_enable">Enable reaction</string>
+</resources>

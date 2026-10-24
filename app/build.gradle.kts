@@ -1,5 +1,16 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.util.Properties
+import com.android.build.api.variant.BuiltArtifactsLoader
+import org.gradle.api.DefaultTask
+import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.provider.Property
+import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.InputDirectory
+import org.gradle.api.tasks.Internal
+import org.gradle.api.tasks.OutputDirectory
+import org.gradle.api.tasks.PathSensitive
+import org.gradle.api.tasks.PathSensitivity
+import org.gradle.api.tasks.TaskAction
 
 plugins {
     alias(libs.plugins.android.application)
@@ -8,6 +19,41 @@ plugins {
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.serialization)
+}
+
+/** Optional generated asset: uses AGP's output metadata, not an arbitrary APK left in build/. */
+abstract class BundleWatchApkTask : DefaultTask() {
+    @get:InputDirectory
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    abstract val apkDirectory: DirectoryProperty
+
+    @get:OutputDirectory
+    abstract val outputDirectory: DirectoryProperty
+
+    @get:Internal
+    abstract val builtArtifactsLoader: Property<BuiltArtifactsLoader>
+
+    @get:Input
+    abstract val expectedVariant: Property<String>
+
+    @get:Input
+    abstract val expectedVersionCode: Property<Int>
+
+    @TaskAction
+    fun bundle() {
+        val artifacts = builtArtifactsLoader.get().load(apkDirectory.get())
+            ?: error("Wear APK metadata is missing")
+        require(artifacts.applicationId == "org.nqmgaming.aneko" &&
+            artifacts.variantName == expectedVariant.get()) { "Wear APK variant does not match the phone" }
+        val artifact = artifacts.elements.singleOrNull()
+            ?: error("Watch setup requires one standalone Wear APK")
+        require(artifact.versionCode == expectedVersionCode.get()) { "Wear APK version does not match the phone" }
+        val source = File(artifact.outputFile)
+        require(source.isFile && source.length() in 1..(64L * 1024 * 1024) &&
+            !source.name.endsWith("-unsigned.apk")) { "Watch setup requires a nonempty signed Wear APK" }
+        val directory = outputDirectory.get().asFile.resolve("watch").apply { mkdirs() }
+        source.copyTo(directory.resolve("ANeko-watch.apk"), overwrite = true)
+    }
 }
 
 android {
@@ -22,6 +68,12 @@ android {
         versionName = libs.versions.versionName.get()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    flavorDimensions += "connectivity"
+    productFlavors {
+        create("foss") { dimension = "connectivity" }
+        create("connected") { dimension = "connectivity" }
     }
 
     // Load signing config from key.properties (CI/CD)
@@ -83,7 +135,25 @@ android {
 
 }
 
+// Opt in for distribution builds. Normal phone-only and all FOSS builds do not build Wear.
+if (providers.gradleProperty("bundleWatchApk").map(String::toBoolean).getOrElse(false)) {
+    androidComponents.onVariants(androidComponents.selector().withFlavor("connectivity" to "connected")) { variant ->
+        val buildType = requireNotNull(variant.buildType)
+        val capitalizedVariant = variant.name.replaceFirstChar(Char::uppercaseChar)
+        val bundle = tasks.register<BundleWatchApkTask>("bundle${capitalizedVariant}WatchApk") {
+            dependsOn(":wear:assemble$capitalizedVariant")
+            apkDirectory.set(rootProject.layout.projectDirectory.dir("wear/build/outputs/apk/connected/$buildType"))
+            outputDirectory.set(layout.buildDirectory.dir("generated/watch-apk/${variant.name}"))
+            builtArtifactsLoader.set(variant.artifacts.getBuiltArtifactsLoader())
+            expectedVariant.set(variant.name)
+            expectedVersionCode.set(libs.versions.versionCode.get().toInt())
+        }
+        variant.sources.assets?.addGeneratedSourceDirectory(bundle, BundleWatchApkTask::outputDirectory)
+    }
+}
+
 dependencies {
+    implementation(project(":companion"))
 
     // AndroidX Core
     implementation(libs.androidx.appcompat)

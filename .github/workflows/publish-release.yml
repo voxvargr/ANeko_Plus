@@ -69,7 +69,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build release APK & AAB
-        run: ./gradlew assembleRelease bundleRelease
+        run: ./gradlew -PbundleWatchApk=true :app:assembleFossRelease :app:assembleConnectedRelease :wear:assembleConnectedRelease :app:bundleConnectedRelease
 
       # Artifacts
       - name: Upload release AAB & APK
@@ -77,8 +77,10 @@ jobs:
         with:
           name: release-build
           path: |
-            app/build/outputs/bundle/release/app-release.aab
-            app/build/outputs/apk/release/app-release.apk
+            app/build/outputs/bundle/connectedRelease/app-connected-release.aab
+            app/build/outputs/apk/foss/release/app-foss-release.apk
+            app/build/outputs/apk/connected/release/app-connected-release.apk
+            wear/build/outputs/apk/connected/release/wear-connected-release.apk
           retention-days: 30
 
       # Upload assets to existing GitHub Release (or create if missing)
@@ -89,7 +91,10 @@ jobs:
           name: ${{ env.VERSION_NAME }}
           draft: false
           prerelease: false
-          files: app/build/outputs/apk/release/app-release.apk
+          files: |
+            app/build/outputs/apk/foss/release/app-foss-release.apk
+            app/build/outputs/apk/connected/release/app-connected-release.apk
+            wear/build/outputs/apk/connected/release/wear-connected-release.apk
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy to internal track
